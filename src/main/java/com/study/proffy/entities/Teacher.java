@@ -1,6 +1,12 @@
 package com.study.proffy.entities;
 
-import javax.persistence.*;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = Teacher.TABLE_NAME)
@@ -29,6 +35,9 @@ public class Teacher {
 
     @Column(name = COLUMN_DESCRIPTION)
     private String description;
+    
+    @OneToMany(mappedBy = "teacher")
+    private List<Discipline> classes;
 
     public Teacher() {
 
