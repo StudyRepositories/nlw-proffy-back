@@ -49,7 +49,7 @@ public class TeacherBuilder {
      *               da entidade {@link Teacher} instanciada pelo construtor.
      * @return O próprio {@link TeacherBuilder}
      */
-    public TeacherBuilder withAvatar(Byte[] avatar) {
+    public TeacherBuilder withAvatar(byte[] avatar) {
         teacher.setAvatar(avatar);
         return this;
     }

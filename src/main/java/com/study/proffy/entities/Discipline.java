@@ -1,6 +1,6 @@
 package com.study.proffy.entities;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity

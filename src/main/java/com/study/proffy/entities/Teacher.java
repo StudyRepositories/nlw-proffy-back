@@ -2,7 +2,7 @@ package com.study.proffy.entities;
 
 import java.util.List;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = Teacher.TABLE_NAME)
@@ -25,7 +25,7 @@ public class Teacher {
     private String name;
 
     @Column(name = COLUMN_AVATAR)
-    private Byte[] avatar;
+    private byte[] avatar;
 
     @Column(name = COLUMN_PHONE_NUMBER, unique = true)
     private String phoneNumber;
@@ -40,7 +40,7 @@ public class Teacher {
 
     }
 
-    public Teacher(Long id, String name, Byte[] avatar, String phoneNumber, String description) {
+    public Teacher(Long id, String name, byte[] avatar, String phoneNumber, String description) {
         this.id = id;
         this.name = name;
         this.avatar = avatar;
@@ -64,11 +64,11 @@ public class Teacher {
         this.name = name;
     }
 
-    public Byte[] getAvatar() {
+    public byte[] getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(Byte[] avatar) {
+    public void setAvatar(byte[] avatar) {
         this.avatar = avatar;
     }
 
