@@ -1,5 +1,7 @@
 package com.study.proffy.entities;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -30,6 +32,9 @@ public class Teacher {
 
     @Column(name = COLUMN_DESCRIPTION)
     private String description;
+    
+    @OneToMany(mappedBy = "teacher")
+    private List<Discipline> classes;
 
     public Teacher() {
 
