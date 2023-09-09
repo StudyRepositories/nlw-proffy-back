@@ -3,6 +3,8 @@ package com.study.proffy.builders;
 import com.study.proffy.entities.Discipline;
 import com.study.proffy.entities.Teacher;
 
+import java.math.BigDecimal;
+
 /**
  * @author caiom
  * Classe utilizada para a construção de entidades do tipo {@link Discipline}
@@ -51,7 +53,7 @@ public class DisciplineBuilder {
      * @param price 
      * @return O próprio {@link DisciplineBuilder}
      */
-    public DisciplineBuilder withPrice(Number price) {
+    public DisciplineBuilder withPrice(BigDecimal price) {
         discipline.setPrice(price);
         return this;
     }

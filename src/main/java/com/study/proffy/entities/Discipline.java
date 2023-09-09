@@ -6,36 +6,38 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = Discipline.TABLE_NAME)
 public class Discipline {
 
 	public static final String TABLE_NAME = "AULA";
+	public static final String SEQUENCE_NAME = "SEQ_AULA_SQ_AULA";
 	private static final String COLUMN_ID = "AULA_SQ_AULA";
-	private static final String AULA_NM_MATERIA = "AULA_NM_MATERIA";
-	private static final String AULA_VL_CUSTO = "AULA_VL_CUSTO";
-	private static final String PROF_SQ_PROFESSOR = "PROF_SQ_PROFESSOR";
+	private static final String COLUMN_NAME = "AULA_NM_MATERIA";
+	private static final String COLUMN_PRICE = "AULA_VL_CUSTO";
+	private static final String COLUMN_PROF_ID = "PROF_SQ_PROFESSOR";
 	
 	@Id
     @Column(name = COLUMN_ID)
 	private Long id;
 	
-	@Column(name = AULA_NM_MATERIA)
+	@Column(name = COLUMN_NAME)
 	private String name;
 	
-	@Column(name = AULA_VL_CUSTO)
-	private Number price;
+	@Column(name = COLUMN_PRICE)
+	private BigDecimal price;
 	
 	@ManyToOne
-	@JoinColumn(name = PROF_SQ_PROFESSOR)
+	@JoinColumn(name = COLUMN_PROF_ID)
 	private Teacher teacher;
 	
 	public Discipline() {
 		
 	}
 
-	public Discipline(Long id, String name, Number price, Teacher teacher) {
+	public Discipline(Long id, String name, BigDecimal price, Teacher teacher) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -59,11 +61,11 @@ public class Discipline {
 		this.name = name;
 	}
 
-	public Number getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(Number price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 
