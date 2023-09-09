@@ -5,9 +5,7 @@ import com.study.proffy.builders.TeacherBuilder;
 import com.study.proffy.entities.Teacher;
 import com.study.proffy.repositories.TeacherRepository;
 import com.study.proffy.services.TeacherService;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -30,9 +28,10 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ExtendWith(MockitoExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
+@ExtendWith(MockitoExtension.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class TeacherControllerUnitTests {
 
     @Autowired
@@ -43,9 +42,6 @@ public class TeacherControllerUnitTests {
 
     @MockBean
     private TeacherService service;
-
-    @MockBean
-    private TeacherRepository repository;
 
     private static Teacher teacher;
 

@@ -22,6 +22,7 @@ public class Teacher {
 
     @Id
     @Column(name = COLUMN_ID, unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = SEQUENCE_NAME)
     private Long id;
 
     @Column(name = COLUMN_NAME, nullable = false)
