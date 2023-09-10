@@ -1,4 +1,4 @@
-package com.study.proffy.services;
+package com.study.proffy.repositories;
 
 import com.study.proffy.entities.ScheduleTime;
 import org.springframework.data.jpa.repository.JpaRepository;

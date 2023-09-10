@@ -3,6 +3,7 @@ package com.study.proffy.services;
 import com.study.proffy.builders.ScheduleTimeBuilder;
 import com.study.proffy.entities.Discipline;
 import com.study.proffy.entities.ScheduleTime;
+import com.study.proffy.repositories.ScheduleTimeRepository;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

@@ -1,6 +1,7 @@
 package com.study.proffy.services;
 
 import com.study.proffy.entities.ScheduleTime;
+import com.study.proffy.repositories.ScheduleTimeRepository;
 import org.springframework.stereotype.Service;
 
 @Service
