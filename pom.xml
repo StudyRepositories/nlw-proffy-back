@@ -15,14 +15,20 @@
     <description>Proffy</description>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>20</java.version>
 
-        <junit.version>5.9.1</junit.version>
-        <mockito.version>4.8.0</mockito.version>
         <snakeyaml.version>2.0</snakeyaml.version>
+
+        <h2database.version>2.2.222</h2database.version>
+        <junit.version>5.10.0</junit.version>
+        <junit-jupiter.version>5.10.0</junit-jupiter.version>
+        <mockito.version>5.5.0</mockito.version>
+        <surefire.version>3.1.2</surefire.version>
     </properties>
 
     <dependencies>
+
+        <!-- Spring Dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -35,13 +41,15 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
+        <!-- Spring Dependencies -->
 
-        <!-- Tratamento de Vulnerabilidades -->
+        <!-- Vulnerability Fix -->
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
             <version>${snakeyaml.version}</version>
         </dependency>
+        <!-- Vulnerability Fix -->
 
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -49,6 +57,7 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!--Test Dependencies-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -58,20 +67,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>${mockito.version}</version>
+            <version>${h2database.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -81,6 +77,7 @@
             <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
+        <!--Test Dependencies-->
 
     </dependencies>
 
@@ -94,7 +91,7 @@
 
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M7</version>
+                <version>${surefire.version}</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.junit.jupiter</groupId>
