@@ -15,12 +15,12 @@ public class Teacher extends BaseEntity {
 
     public static final String TABLE_NAME = "TEACHERS";
     protected static final String COLUMN_ID_NAME = "TCHR_SQ_TEACHER";
-    protected static final String COLUMN_RESOURCE_NAME = "TCHR_SQ_RESOURCE";
-    protected static final String COLUMN_FIRSTNAME_NAME = "tchr_ds_firstname";
-    protected static final String COLUMN_LASTNAME_NAME = "tchr_ds_lastname";
-    protected static final String COLUMN_DESCRIPTION_NAME = "tchr_ds_teacher";
-    protected static final String COLUMN_PROFILE_NAME = "tchr_ds_profile";
-    protected static final String COLUMN_CELLPHONE_NAME = "tchr_nu_cellphone";
+    protected static final String COLUMN_RESOURCE_NAME = "TCHR_SQ0_RESOURCE";
+    protected static final String COLUMN_FIRSTNAME_NAME = "TCHR_DS_FIRSTNAME";
+    protected static final String COLUMN_LASTNAME_NAME = "TCHR_DS_LASTNAME";
+    protected static final String COLUMN_DESCRIPTION_NAME = "TCHR_DS_TEACHER";
+    protected static final String COLUMN_PROFILE_NAME = "TCHR_DS_PROFILE";
+    protected static final String COLUMN_CELLPHONE_NAME = "TCHR_NU_CELLPHONE";
 
     public Teacher() {
         super();
