@@ -1,7 +1,6 @@
 package com.study.proffy.entities;
 
 import jakarta.persistence.*;
-import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
@@ -15,9 +14,10 @@ public class Teacher extends BaseEntity {
 
     public static final String TABLE_NAME = "TEACHERS";
     protected static final String COLUMN_ID_NAME = "TCHR_SQ_TEACHER";
-    protected static final String COLUMN_RESOURCE_NAME = "TCHR_SQ0_RESOURCE";
+    protected static final String COLUMN_RESOURCE_NAME = "TCHR_SQ_RESOURCE";
     protected static final String COLUMN_FIRSTNAME_NAME = "TCHR_DS_FIRSTNAME";
     protected static final String COLUMN_LASTNAME_NAME = "TCHR_DS_LASTNAME";
+    protected static final String COLUMN_EMAIL_NAME = "TCHR_DS_EMAIL";
     protected static final String COLUMN_DESCRIPTION_NAME = "TCHR_DS_TEACHER";
     protected static final String COLUMN_PROFILE_NAME = "TCHR_DS_PROFILE";
     protected static final String COLUMN_CELLPHONE_NAME = "TCHR_NU_CELLPHONE";
@@ -32,13 +32,16 @@ public class Teacher extends BaseEntity {
     @Column(name = COLUMN_LASTNAME_NAME, nullable = false)
     private String lastname;
 
+    @Column(name = COLUMN_EMAIL_NAME, nullable = false, unique = true)
+    private String email;
+
     @Column(name = COLUMN_DESCRIPTION_NAME, nullable = false)
     private String description;
 
     @Column(name = COLUMN_PROFILE_NAME, nullable = false)
     private String profilePicture;
 
-    @Column(name = COLUMN_CELLPHONE_NAME, unique = true)
+    @Column(name = COLUMN_CELLPHONE_NAME, nullable = false)
     private String cellphone;
 
     @Override
@@ -68,6 +71,15 @@ public class Teacher extends BaseEntity {
 
     public Teacher setLastname(String lastname) {
         this.lastname = lastname;
+        return this;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Teacher setEmail(String email) {
+        this.email = email;
         return this;
     }
 
@@ -101,15 +113,17 @@ public class Teacher extends BaseEntity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Teacher teacher)) return false;
+        if (!(o instanceof Teacher that)) return false;
         if (!super.equals(o)) return false;
 
-        return cellphone.equals(teacher.cellphone);
+        if (!email.equals(that.email)) {return false;}
+        return cellphone.equals(that.cellphone);
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
+        result = 31 * result + email.hashCode();
         result = 31 * result + cellphone.hashCode();
         return result;
     }
@@ -119,6 +133,7 @@ public class Teacher extends BaseEntity {
         final StringBuffer sb = new StringBuffer("Teacher{");
         sb.append("firstname='").append(firstname).append('\'');
         sb.append(", lastname='").append(lastname).append('\'');
+        sb.append(", email='").append(email).append('\'');
         sb.append(", description='").append(description).append('\'');
         sb.append(", profilePicture='").append(profilePicture).append('\'');
         sb.append(", cellphone='").append(cellphone).append('\'');
