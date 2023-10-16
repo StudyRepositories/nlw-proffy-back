@@ -1,6 +1,9 @@
 package com.study.proffy.services.simple;
 
 import com.study.proffy.entities.Teacher;
+import com.study.proffy.exceptions.teacher.TeacherEmailAlreadyInUseException;
+import com.study.proffy.exceptions.teacher.TeacherException;
+import com.study.proffy.exceptions.teacher.TeacherNotFoundException;
 import com.study.proffy.mocks.TeacherMock;
 import com.study.proffy.repositories.TeacherRepository;
 import org.junit.jupiter.api.Test;
@@ -10,10 +13,10 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Optional;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -45,7 +48,7 @@ public class SimpleTeacherServiceUnitTests {
                 .setId(1L)
                 .setResource(UUID.randomUUID());
 
-        when(repository.findByResource(any(UUID.class))).thenReturn(expected);
+        when(repository.findByResource(any(UUID.class))).thenReturn(Optional.ofNullable(expected));
 
         Teacher actual = service.findByResource(expected.getResource());
 
@@ -64,7 +67,7 @@ public class SimpleTeacherServiceUnitTests {
                 .setResource(old.getResource())
                 .setLastname("Schwarzenegger");
 
-        when(repository.findByResource(any(UUID.class))).thenReturn(old);
+        when(repository.findByResource(any(UUID.class))).thenReturn(Optional.of(old));
 
         service.updateByResource(old.getResource(), changed);
 
@@ -77,8 +80,50 @@ public class SimpleTeacherServiceUnitTests {
                 .setId(1L)
                 .setResource(UUID.randomUUID());
 
+        when(repository.findByResource(any(UUID.class))).thenReturn(Optional.ofNullable(expected));
         service.deleteByResource(expected.getResource());
 
         verify(service, times(1)).deleteByResource(expected.getResource());
+    }
+
+    @Test
+    public void should_Throw_Email_Already_In_Use_Exception() {
+        Teacher teacher = TeacherMock.getSingle();
+        when(repository.findByEmail(anyString())).thenReturn(Optional.ofNullable(teacher));
+        Throwable throwable = assertThrows(TeacherException.class, () -> {
+            Teacher saved = service.createSingle(teacher);
+        });
+
+        assertEquals(TeacherEmailAlreadyInUseException.class, throwable.getClass());
+    }
+
+    @Test
+    public void should_Throw_Not_Found_Exception_Find_By_Resource() {
+        when(repository.findByResource(any(UUID.class))).thenReturn(Optional.empty());
+        Throwable throwable = assertThrows(TeacherException.class, () -> {
+            Teacher found = service.findByResource(UUID.randomUUID());
+        });
+
+        assertEquals(TeacherNotFoundException.class, throwable.getClass());
+    }
+
+    @Test
+    public void should_Throw_Not_Found_Exception_Update_By_Resource() {
+        when(repository.findByResource(any(UUID.class))).thenReturn(Optional.empty());
+        Throwable throwable = assertThrows(TeacherException.class, () -> {
+            service.updateByResource(UUID.randomUUID(), TeacherMock.getSingle());
+        });
+
+        assertEquals(TeacherNotFoundException.class, throwable.getClass());
+    }
+
+    @Test
+    public void should_Throw_Not_Found_Exception_Delete_By_Resource() {
+        when(repository.findByResource(any(UUID.class))).thenReturn(Optional.empty());
+        Throwable throwable = assertThrows(TeacherException.class, () -> {
+            service.deleteByResource(UUID.randomUUID());
+        });
+
+        assertEquals(TeacherNotFoundException.class, throwable.getClass());
     }
 }

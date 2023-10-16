@@ -10,13 +10,12 @@ public final class TeacherMock {
     private static final Random random = new Random();
 
     public static Teacher getSingle() {
-        return new Teacher()
-                .setId(random.nextLong(99) + 1)
-                .setResource(UUID.randomUUID())
-                .setFirstname("Arnold")
-                .setLastname("Xuazineguer")
-                .setDescription("A big guy that make things happen")
-                .setProfilePicture("https://mock-image-url.com/arnold.png")
-                .setCellphone("12345678910");
+        Teacher teacher =
+                new Teacher().setId(random.nextLong(99) + 1).setResource(UUID.randomUUID()).setFirstname("Arnold")
+                        .setLastname("Xuazineguer").setDescription("A big guy that make things happen")
+                        .setProfilePicture("https://mock-image-url.com/arnold.png").setCellphone("12345678910");
+
+        teacher.setEmail(teacher.getFirstname() + "." + teacher.getLastname() + "@email.com");
+        return teacher;
     }
 }

@@ -4,6 +4,7 @@ import com.study.proffy.entities.Teacher;
 import com.study.proffy.services.TeacherService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -13,6 +14,7 @@ import java.util.UUID;
 public class TeacherController {
 
     public static final String BASE_URL = "/teachers";
+    private static final HttpStatusCode code = HttpStatusCode.valueOf(209);
 
     private final TeacherService service;
 

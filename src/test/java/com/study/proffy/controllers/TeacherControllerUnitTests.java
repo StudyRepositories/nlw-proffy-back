@@ -72,9 +72,7 @@ public class TeacherControllerUnitTests {
 
     @Test
     public void should_Find_By_Resource() throws Exception {
-        final String url = new StringBuilder(TeacherController.BASE_URL)
-                .append("/").append(UUID.randomUUID())
-                .toString();
+        final String url = TeacherController.BASE_URL + "/" + UUID.randomUUID();
 
         when(service.findByResource(any(UUID.class))).thenReturn(teacher);
 
@@ -95,9 +93,7 @@ public class TeacherControllerUnitTests {
 
     @Test
     public void should_Update_By_Resource() throws Exception {
-        final String url = new StringBuilder(TeacherController.BASE_URL)
-                .append("/").append(UUID.randomUUID())
-                .toString();
+        final String url = TeacherController.BASE_URL + "/" + UUID.randomUUID();
 
         doNothing().when(service).updateByResource(any(UUID.class), any(Teacher.class));
 
@@ -112,9 +108,7 @@ public class TeacherControllerUnitTests {
 
     @Test
     public void should_Delete_By_Resource() throws Exception {
-        final String url = new StringBuilder(TeacherController.BASE_URL)
-                .append("/").append(UUID.randomUUID())
-                .toString();
+        final String url = TeacherController.BASE_URL + "/" + UUID.randomUUID();
 
         doNothing().when(service).deleteByResource(any(UUID.class));
 
